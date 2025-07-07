@@ -33,17 +33,20 @@ public class YRBTjam5 : ModBehaviour
 		// Example of accessing game code.
 		OnCompleteSceneLoad(OWScene.TitleScreen, OWScene.TitleScreen); // We start on title screen
 		LoadManager.OnCompleteSceneLoad += OnCompleteSceneLoad;
-	}
+        NewHorizons.GetStarSystemLoadedEvent().AddListener(SpawnIntoSystem);
+    }
 
-	public void OnCompleteSceneLoad(OWScene previousScene, OWScene newScene)
+    public void OnCompleteSceneLoad(OWScene previousScene, OWScene newScene)
 	{
 		if (newScene != OWScene.SolarSystem) return;
 		ModHelper.Console.WriteLine("Loaded into solar system!", MessageType.Success);
+    }
 
-		GameObject test = new();
-		test.transform.position = new Vector3(2000, 2000, 2000);
-		Instantiate(GameObject.Find("TowerTwin_Body/Sector_TowerTwin/Geometry_TowerTwin/OtherComponentsGroup/ControlledByProxy_Base/Terrain_HT_TowerTwin_TLD_Shell/TimeLoopShell/outerShell"), test.transform);
-        Instantiate(GameObject.Find("TowerTwin_Body/Sector_TowerTwin/Sector_TimeLoopInterior/Geometry_TimeLoopInterior/innerShell"), test.transform);
+	void SpawnIntoSystem(string systemName) {
+		if(systemName != "Jam5") return;
+        MeshRenderer[] dr = NewHorizons.GetPlanet("YRBT_Planet").GetComponentsInChildren<MeshRenderer>();
+        foreach(MeshRenderer mr in dr) {
+            mr.material = new Material(Shader.Find("Diffuse"));
+        }
     }
 }
-
