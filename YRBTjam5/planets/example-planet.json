@@ -1,0 +1,41 @@
+﻿{
+    "$schema": "https://raw.githubusercontent.com/Outer-Wilds-New-Horizons/new-horizons/main/NewHorizons/Schemas/body_schema.json",
+    "name": "YRBT_Planet",
+    "starSystem": "Jam5",
+    "Base": {
+        "gravityFallOff": "inverseSquared",
+        "surfaceSize": 10,
+        "surfaceGravity": 12
+    },
+    "Orbit": {
+        "primaryBody": "YRBT_Star",
+        "semiMajorAxis": 1000
+    },
+    "ShipLog": {
+        "spriteFolder": "planets/shiplog/sprites"
+    },
+    "Props": {
+        "details": [
+            {
+                "path": "TowerTwin_Body/Sector_TowerTwin/Geometry_TowerTwin/OtherComponentsGroup/ControlledByProxy_Base/Terrain_HT_TowerTwin_TLD_Shell/TimeLoopShell/outerShell",
+                "scale": 10.0,
+                "keepLoaded": true
+            },
+            {
+                "path": "TowerTwin_Body/Sector_TowerTwin/Sector_TimeLoopInterior/Geometry_TimeLoopInterior/innerShell",
+                "scale": 10.0,
+                "keepLoaded": true
+            },
+            {
+                "path": "TowerTwin_Body/Sector_TowerTwin/Geometry_TowerTwin/OtherComponentsGroup/ControlledByProxy_Base/Terrain_HT_TowerTwin_TLD_Shell/TimeLoopShell/outerShell",
+                "scale": 5.0,
+                "keepLoaded": true
+            },
+            {
+                "path": "TowerTwin_Body/Sector_TowerTwin/Sector_TimeLoopInterior/Geometry_TimeLoopInterior/innerShell",
+                "scale": 5.0,
+                "keepLoaded": true
+            }
+        ]
+    }
+}
