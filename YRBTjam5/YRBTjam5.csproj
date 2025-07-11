@@ -26,7 +26,10 @@
     <Content Include="YRBTjam5.csproj.user" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="planets\**\*.*">
+	<None Include="Assets\**\*.*">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+	<None Include="planets\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="systems\**\*.*">

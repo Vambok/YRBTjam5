@@ -4,37 +4,50 @@
     "starSystem": "Jam5",
     "Base": {
         "gravityFallOff": "inverseSquared",
-        "surfaceSize": 100,
-        "groundSize": 99,
-        "surfaceGravity": 12
+        "surfaceSize": 400,
+        "groundSize": 100,
+        "surfaceGravity": 12,
+		"soiOverride": 600,
+		"gravityAlignmentRadiusOverride": 500
     },
     "Orbit": {
         "primaryBody": "YRBT_Star",
         "semiMajorAxis": 1000
     },
+	"AmbientLights": [
+		{
+			"position": {"x":0,"y":0, "z":0},
+			"innerRadius": 100,
+			"outerRadius": 450,
+			"tint": {"r":255,"g":255, "b":255}
+		}
+	],
     "ShipLog": {
         "spriteFolder": "planets/shiplog/sprites"
     },
     "Props": {
         "details": [
             {
-                "path": "TowerTwin_Body/Sector_TowerTwin/Geometry_TowerTwin/OtherComponentsGroup/ControlledByProxy_Base/Terrain_HT_TowerTwin_TLD_Shell/TimeLoopShell/outerShell",
-                "scale": 10.0,
+				"assetBundle": "Assets/bundle",
+                "path": "Assets/Bundle/Layer.prefab",
+                "scale": 47000.0,
+				"rename": "Layer3",
                 "keepLoaded": true
             },
             {
-                "path": "TowerTwin_Body/Sector_TowerTwin/Sector_TimeLoopInterior/Geometry_TimeLoopInterior/innerShell",
-                "scale": 10.0,
+				"assetBundle": "Assets/bundle",
+                "path": "Assets/Bundle/Layer.prefab",
+                "scale": 37600.0,
+				"rename": "Layer2",
+				"rotation": {"x":0,"y":0, "z":90},
                 "keepLoaded": true
             },
             {
-                "path": "TowerTwin_Body/Sector_TowerTwin/Geometry_TowerTwin/OtherComponentsGroup/ControlledByProxy_Base/Terrain_HT_TowerTwin_TLD_Shell/TimeLoopShell/outerShell",
-                "scale": 5.0,
-                "keepLoaded": true
-            },
-            {
-                "path": "TowerTwin_Body/Sector_TowerTwin/Sector_TimeLoopInterior/Geometry_TimeLoopInterior/innerShell",
-                "scale": 5.0,
+				"assetBundle": "Assets/bundle",
+                "path": "Assets/Bundle/Layer.prefab",
+                "scale": 28200.0,
+				"rename": "Layer1",
+				"rotation": {"x":0,"y":90, "z":0},
                 "keepLoaded": true
             }
         ]

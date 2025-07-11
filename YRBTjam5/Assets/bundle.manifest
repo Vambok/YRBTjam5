@@ -1,0 +1,38 @@
+ManifestFileVersion: 0
+CRC: 1464641353
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 93d1dd6fd20983ee94c775a617e84eb2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2e18abcf4fb6b4a2a10d44b071c0b73d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Bundle/layer.fbx
+- Assets/Bundle/Layer.prefab
+Dependencies: []
