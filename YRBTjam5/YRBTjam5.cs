@@ -53,7 +53,33 @@ public class YRBTjam5 : ModBehaviour {
 			layers[1] = layers[0].transform.Find("Sector/Layer1").gameObject;
 			layers[2] = layers[0].transform.Find("Sector/Layer2").gameObject;
 			layers[3] = layers[0].transform.Find("Sector/Layer3").gameObject;
-			grav = layers[0].transform.Find("GravityWell").GetComponent<GravityVolume>();
+			GameObject toto;
+			Transform rotato;
+			for(int j = 1;j < 4;j++) {
+				layers[j].AddComponent<Gravity_reverse>().modInstance = Instance;
+                toto = layers[j].transform.Find("ring"+j).gameObject;
+				toto.AddComponent<MeshCollider>();
+				rotato = layers[j].transform.Find("rotato"+j);
+				for(int i = 0;i < 15;i++) {
+					Instantiate(toto, rotato, true);
+					rotato.localEulerAngles += new Vector3(6.3158f, 0, 0);
+				}
+				for(int i = 0;i < 28;i++) {
+					Instantiate(toto, rotato, true);
+					rotato.localEulerAngles -= new Vector3(6.3158f, 0, 0);
+				}
+				for(int i = 0;i < 14;i++) {
+					Instantiate(toto, rotato, true);
+					rotato.localEulerAngles += new Vector3(6.3158f, 0, 0);
+				}
+				foreach(MeshCollider toti in rotato.GetComponentsInChildren<MeshCollider>()) {
+					toti.enabled = true;
+				}
+				foreach(MeshRenderer toti in rotato.GetComponentsInChildren<MeshRenderer>()) {
+					toti.enabled = true;
+				}
+			}
+            grav = layers[0].transform.Find("GravityWell").GetComponent<GravityVolume>();
 			grav._cutoffAcceleration = 2.4f;// gravity on inner layer = 12*groundSize/500
 			grav._gravitationalMass = 1000f*12*400*400;// 1000*surfaceGravity*surfaceSize^gravFallOff
 			grav._lowerSurfaceRadius = 400;// = surfaceSize
@@ -72,14 +98,30 @@ public class YRBTjam5 : ModBehaviour {
             if(!player.transform.localScale.ApproxEquals(targetSize * Vector3.one)) {
                 player.transform.localScale = Vector3.one * Mathf.Lerp(previousSize, targetSize, (Time.time - startScaling) * scalingSpeed);
             }
-            if(OWInput.IsNewlyPressed(InputLibrary.autopilot)) {
-				grav._surfaceAcceleration *= -1;
-			}
             if(OWInput.IsNewlyPressed(InputLibrary.toolOptionY)) {
+				Gravity_reverse();
+            }
+            /*if(OWInput.IsNewlyPressed(InputLibrary.toolOptionY)) {//Stop the madness for now
                 previousSize = player.transform.localScale.x;
 				startScaling = Time.time;
                 targetSize *= (13 + 5 * OWInput.GetValue(InputLibrary.toolOptionY)) / 12;
-            }
+            }*/
         }
+    }
+
+	public void Gravity_reverse() {
+        grav._surfaceAcceleration *= -1;
+        grav._cutoffAcceleration *= -1;
+        grav._gravitationalMass *= -1;
+    }
+}
+
+public class Gravity_reverse : MonoBehaviour {
+    public YRBTjam5 modInstance;
+    private void OnTriggerEnter(Collider col) {
+		if(col.CompareTag("Player")) modInstance.Gravity_reverse();
+    }
+    private void OnTriggerExit(Collider col) {
+        if(col.CompareTag("Player")) modInstance.Gravity_reverse();
     }
 }
