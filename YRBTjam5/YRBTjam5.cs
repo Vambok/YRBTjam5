@@ -93,11 +93,22 @@ public class YRBTjam5 : ModBehaviour {
 
     void Update() {
 		if(layers[0] != null) {
-			layers[1].transform.localEulerAngles += Vector3.up * 5 * Time.deltaTime;
-            layers[2].transform.localEulerAngles += Vector3.forward * 5 * Time.deltaTime;
-            if(!player.transform.localScale.ApproxEquals(targetSize * Vector3.one)) {
-                player.transform.localScale = Vector3.one * Mathf.Lerp(previousSize, targetSize, (Time.time - startScaling) * scalingSpeed);
+			float planet_dist = (player.transform.position - layers[0].transform.position).magnitude;
+			if(planet_dist < 370 && planet_dist > 190) {
+				if(planet_dist > 310) {
+					layers[1].transform.localEulerAngles += (Vector3.up - Vector3.forward) * 5 * Time.deltaTime;
+					layers[3].transform.localEulerAngles -= Vector3.forward * 5 * Time.deltaTime;
+				} else {
+					layers[2].transform.localEulerAngles += (Vector3.forward - Vector3.up) * 5 * Time.deltaTime;
+					layers[3].transform.localEulerAngles -= Vector3.up * 5 * Time.deltaTime;
+				}
+            } else {
+                layers[1].transform.localEulerAngles += Vector3.up * 5 * Time.deltaTime;
+                layers[2].transform.localEulerAngles += Vector3.forward * 5 * Time.deltaTime;
             }
+            if(!player.transform.localScale.ApproxEquals(targetSize * Vector3.one)) {
+				player.transform.localScale = Vector3.one * Mathf.Lerp(previousSize, targetSize, (Time.time - startScaling) * scalingSpeed);
+			}
             if(OWInput.IsNewlyPressed(InputLibrary.toolOptionY)) {
 				Gravity_reverse();
             }
